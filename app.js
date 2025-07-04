@@ -11,7 +11,7 @@ dotenv.config();
 
 // Middleware to enable CORS
 app.use(cors({
-    origin: 'http://localhost:5173', // Allow requests from the frontend
+    origin: 'https://mernstackprojectbackend-production.up.railway.app/', // Allow requests from the frontend
     credentials: true // Allow cookies to be sent with requests
 }));
 
