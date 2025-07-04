@@ -6,7 +6,7 @@ import productsRoute from './routes/productsRoute.js';
 import path from 'path';
 import cors from 'cors';
 const app = express();
-const port = process.env.PORT || 4003;
+const port = process.env.PORT || 2003;
 dotenv.config();
 
 // Middleware to enable CORS
@@ -21,12 +21,13 @@ connectDB();
 
 app.use(express.json()); // Middleware to parse JSON bodies
 
-app.use("/api/products", productsRoute)
-
 // Serve the index.html file for the root route
 app.get("/", (req, res) => {
-    res.sendFile(path.join(process.cwd(), 'backend/public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'backend/public', 'index.html'));
 })
+
+app.use("/api/products", productsRoute)
+
 
 // Connect to MongoDB
 mongoose.connection.once("open", () => {
