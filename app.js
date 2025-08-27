@@ -23,7 +23,7 @@ app.use(express.json()); // Middleware to parse JSON bodies
 
 // Serve the index.html file for the root route
 app.get("/", (req, res) => {
-    res.sendFile("./index.html"); // Adjust the path as necessary
+    res.sendFile("index.html");
 })
 
 app.use("/api/products", productsRoute)
@@ -32,7 +32,7 @@ app.use("/api/products", productsRoute)
 // Connect to MongoDB
 mongoose.connection.once("open", () => {
     app.listen(port, () => {
-        console.log(`Server is running on port ${port} and link is http://localhost:${port}`);
-        // console.log(`Server is running on port ${port}`);
+        // console.log(`Server is running on port ${port} and link is http://localhost:${port}`);
+        console.log(`Server is running on port ${port}`);
     })
 })
