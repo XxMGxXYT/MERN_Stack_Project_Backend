@@ -32,6 +32,7 @@ app.use("/api/products", productsRoute)
 // Connect to MongoDB
 mongoose.connection.once("open", () => {
     app.listen(port, () => {
-        console.log(`Server is running on port ${port} and link is http://localhost:${port}`);
+        // console.log(`Server is running on port ${port} and link is http://localhost:${port}`);
+        console.log(`Server is running on port ${port}`);
     })
 })
