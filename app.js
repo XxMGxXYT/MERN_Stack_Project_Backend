@@ -11,7 +11,7 @@ dotenv.config();
 
 // Middleware to enable CORS
 app.use(cors({
-    origin: 'https://mernstackprojectbackend-production.up.railway.app/', // Allow requests from the frontend
+    origin: 'https://mern-stack-project-backend-flame.vercel.app', // Allow requests from the frontend
     credentials: true // Allow cookies to be sent with requests
 }));
 
@@ -23,7 +23,7 @@ app.use(express.json()); // Middleware to parse JSON bodies
 
 // Serve the index.html file for the root route
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, 'backend/public', 'index.html'));
+    res.sendFile(path.join(path.resolve(), 'public', 'index.html')); // Adjust the path as necessary
 })
 
 app.use("/api/products", productsRoute)
