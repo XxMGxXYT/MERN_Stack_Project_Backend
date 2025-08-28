@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+dotenv.config();
 import connectDB from './config/db.js';
 import productsRoute from './routes/productsRoute.js';
 import path from 'path';
@@ -8,7 +9,6 @@ import cors from 'cors';
 import homeRoute from './routes/homeRoute.js';
 const app = express();
 const port = process.env.PORT || 2003;
-dotenv.config();
 
 connectDB();
 // Middleware to enable CORS
