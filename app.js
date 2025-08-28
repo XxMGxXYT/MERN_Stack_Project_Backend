@@ -5,6 +5,7 @@ import connectDB from './config/db.js';
 import productsRoute from './routes/productsRoute.js';
 import path from 'path';
 import cors from 'cors';
+import homeRoute from './routes/homeRoute.js';
 const app = express();
 const port = process.env.PORT || 2003;
 dotenv.config();
@@ -18,13 +19,10 @@ app.use(cors({
 
 app.use(express.static('public')); // Serve static files from the 'public' directory
 
-
 app.use(express.json()); // Middleware to parse JSON bodies
 
 // Serve the index.html file for the root route
-app.get("/", (req, res) => {
-    res.sendFile("index.html");
-})
+app.use("/", homeRoute)
 
 app.use("/api/products", productsRoute)
 
@@ -32,7 +30,7 @@ app.use("/api/products", productsRoute)
 // Connect to MongoDB
 mongoose.connection.once("open", () => {
     app.listen(port, () => {
-        // console.log(`Server is running on port ${port} and link is http://localhost:${port}`);
-        console.log(`Server is running on port ${port}`);
+        console.log(`Server is running on port ${port} and link is http://localhost:${port}`);
+        // console.log(`Server is running on port ${port}`);
     })
 })
