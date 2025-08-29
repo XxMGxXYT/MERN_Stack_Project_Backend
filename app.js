@@ -3,10 +3,9 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 dotenv.config();
 import connectDB from './config/db.js';
-import productsRoute from './routes/productsRoute.js';
 import path from 'path';
 import cors from 'cors';
-import { getAllProductsHandler, createProductHandler, updateProductHandler, deleteProductHandler } from "./controllers/productsControllers.js";
+import productsRoute from './routes/productsRoute.js';
 const app = express();
 const port = process.env.PORT || 2003;
 
@@ -21,18 +20,13 @@ app.use(express.static('public')); // Serve static files from the 'public' direc
 
 app.use(express.json()); // Middleware to parse JSON bodies
 
-// Serve the index.html file for the root route
-app.get("/", (req, res) => {
-    res.sendFile('index.html');
+// Serve the index.html file for all other routes (not matching API)
+app.use("/", (req, res) => {
+    res.sendFile(path.join(path.resolve(), 'public', 'index.html'));
 });
 
-
-app.get("/api/products/", getAllProductsHandler)
-app.post("/api/products/", createProductHandler)
-app.put("/api/products/:id", updateProductHandler)
-app.delete("/api/products/:id", deleteProductHandler);
-
-
+// Define API routes
+app.use("/api/products", productsRoute);
 
 // Connect to MongoDB
 mongoose.connection.once("open", () => {
