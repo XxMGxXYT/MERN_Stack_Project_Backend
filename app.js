@@ -26,7 +26,7 @@ app.use("/", (req, res) => {
 });
 
 // Define API routes
-app.use("/api/products", productsRoute);
+app.use("api/products", productsRoute);
 
 // Connect to MongoDB
 mongoose.connection.once("open", () => {
