@@ -20,13 +20,14 @@ app.use(express.static('public')); // Serve static files from the 'public' direc
 
 app.use(express.json()); // Middleware to parse JSON bodies
 
+// Define API routes
+app.use("/api/products", productsRoute);
+
 // Serve the index.html file for all other routes (not matching API)
 app.use("/", (req, res) => {
     res.sendFile(path.join(path.resolve(), 'public', 'index.html'));
 });
 
-// Define API routes
-app.use("api/products", productsRoute);
 
 // Connect to MongoDB
 mongoose.connection.once("open", () => {
