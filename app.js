@@ -23,7 +23,7 @@ app.use(express.json()); // Middleware to parse JSON bodies
 
 // Serve the index.html file for the root route
 app.get("/", (req, res) => {
-    res.sendFile(path.join(path.resolve(), 'public', 'index.html'));
+    res.sendFile('index.html');
 });
 
 
